@@ -1,0 +1,13 @@
+Model,Transform,Accuracy,Precision,Recall,F-Score,AUC,Average Log Loss,Training Log Loss,Features Not Used,Test AUC (From Kaggle)
+SVM,Continuous Delta,,,,,,,,,
+SVM,Discrete Data,,,,,,,,,
+SVM,Logarithm,0.765090909,0.754189944,0.786026201,0.769779045,0.860569844,0.463266396,33.16476125,,0.85931
+Logistic Regression,Continuous Delta,,,,,,,,,
+Logistic Regression,Discrete Data,,,,,,,,,
+Logistic Regression,Logarithm,0.769454545,0.759103641,0.788937409,0.773733048,0.862577646,0.460096884,33.62202538,,0.86083
+Neural Network,Continuous Delta,,,,,,,,,
+Neural Network,Discrete Data,,,,,,,,,
+Neural Network,Logarithm,0.772363636,0.807565789,0.714701601,0.758301158,0.862313183,0.465395641,32.85757608,,0.86004
+Decision Tree,Continuous Delta,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Decision Tree,Discrete Data,,,,,,,,,
+Decision Tree,Logarithm,NA,NA,NA,NA,NA,NA,NA,NA,NA
