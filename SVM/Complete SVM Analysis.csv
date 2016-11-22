@@ -13,8 +13,8 @@ Discrete,0.754181818,0.753265602,0.755458515,0.754360465,0.800586473,0.537901686
 Discrete,0.753454545,0.752906977,0.754002911,0.753454545,0.796395264,0.539254276,22.20202337,"9, 3",0.81759,,5,data.A_mentions_received...data.B_mentions_received
 Discrete,0.755636364,0.757709251,0.751091703,0.754385965,0.787103094,0.5367396,22.56481458,"9, 3, 4, 7,  8, 11",0.78963,,6,data.A_retweets_received...data.B_retweets_received
 ,,,,,,,,,,,7,data.A_mentions_sent...data.B_mentions_sent
-,,,,,,,,,,,8,data.A_retweets_sent...data.B_retweets_sent
-,,,,,,,,,,,9,data.A_posts...data.B_posts
-,,,,,,,,,,,10,data.A_network_feature_1...data.B_network_feature_1
-,,,,,,,,,,,11,data.A_network_feature_2...data.B_network_feature_2
-,,,,,,,,,,,12,data.A_network_feature_3...data.B_network_feature_3
+,CV Score,Training,Test,Regularization Parameter,,,,,,,8,data.A_retweets_sent...data.B_retweets_sent
+SVC with Linear Kernel,0.8608,0.8628,0.85994,1,,,,,,,9,data.A_posts...data.B_posts
+RBF Kernel,0.7378,0.999,0.73704,1,,,,,,,10,data.A_network_feature_1...data.B_network_feature_1
+Linear SVC (Linear Kernel),0.8773,0.877650534,0.8416,1,,,,,,,11,data.A_network_feature_2...data.B_network_feature_2
+SVC with Polynomial (Degree 3 Kernel),0.861,0.863,0.85998,1,,,,,,,12,data.A_network_feature_3...data.B_network_feature_3
