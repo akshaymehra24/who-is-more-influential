@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Nov 22 14:53:08 2016
+Created on Thu Nov 24 19:47:40 2016
 
 @author: Akshay
 """
 
-from sklearn import svm
+from sklearn import linear_model
 import numpy as np
 import matplotlib.pyplot as plt 
 from sklearn import ensemble
@@ -40,38 +40,29 @@ y_train = np.array(y_train)
 X_train_A = np.array(X_train_A)
 X_train_B = np.array(X_train_B)
 
-def transform_features(x):
-    return np.log(1+x)
+def transform_features_log(x):
+    return np.log(1+x)  
 
-X_train = transform_features(X_train_A) - transform_features(X_train_B)
-X_train = X_train[:,1:3]
+X_train_log = transform_features_log(X_train_A) - transform_features_log(X_train_B)
+X_train_log = X_train_log[:,[0,2]]
 
-C = 3.0  # SVM regularization parameter
-svc = svm.SVC(kernel='linear', C=C).fit(X_train, y_train)
-rbf_svc = svm.SVC(kernel='rbf', gamma=0.7, C=C).fit(X_train, y_train)
-poly_svc = svm.SVC(kernel='poly', degree=3, C=C).fit(X_train, y_train)
-lin_svc = svm.LinearSVC(C=C).fit(X_train, y_train)
+lm_log = linear_model.LogisticRegression().fit(X_train_log, y_train)
 
 h = .02  # step size in the mesh
 
 # create a mesh to plot in
-x_min, x_max = X_train[:, 0].min() - 1, X_train[:, 0].max() + 1
-y_min, y_max = X_train[:, 1].min() - 1, X_train[:, 1].max() + 1
-xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
-                     np.arange(y_min, y_max, h))
+x_min, x_max = X_train_log[:, 0].min() - 1, X_train_log[:, 0].max() + 1
+y_min, y_max = X_train_log[:, 1].min() - 1, X_train_log[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
 
 # title for the plots
-titles = ['SVC with linear kernel',
-          'LinearSVC (linear kernel)',
-          'SVC with RBF kernel',
-          'SVC with polynomial (degree 3) kernel']
+titles = ['Following Vs NF3']
 
 
-for i, clf in enumerate((svc, lin_svc, rbf_svc, poly_svc)):
+for i, clf in enumerate((lm_log, lm_log)):
     # Plot the decision boundary. For that, we will assign a color to each
     # point in the mesh [x_min, x_max]x[y_min, y_max].
-    plt.subplot(2, 2, i + 1)
-    plt.subplots_adjust(wspace=0.4, hspace=0.4)
+    plt.subplot(1, 1, i + 1)
 
     Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
 
@@ -80,9 +71,9 @@ for i, clf in enumerate((svc, lin_svc, rbf_svc, poly_svc)):
     plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.8)
 
     # Plot also the training points
-    plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=plt.cm.coolwarm)
-    plt.xlabel('Followers')
-    plt.ylabel('Following')
+    plt.scatter(X_train_log[:, 0], X_train_log[:, 1], c=y_train, cmap=plt.cm.coolwarm)
+    plt.xlabel('Following')
+    plt.ylabel('NF3')
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
     plt.xticks(())
