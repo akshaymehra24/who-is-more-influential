@@ -15,7 +15,7 @@ import os as os
 # LOADING TRAINING DATA
 ###########################
 os.chdir('C:/Users/aksha/OneDrive/Documents/GitHub/who-is-more-influential/Data Analysis')
-trainfile = open('Normalized_train_new.csv')
+trainfile = open('train_new_discrete.csv')
 for line in trainfile:
     header = line.rstrip().split(',')
     break
@@ -69,7 +69,7 @@ for i, clf in enumerate((svc, svc)):
 
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
-    plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.8)
+    #plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.8)
 
     # Plot also the training points
     plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=plt.cm.coolwarm)
