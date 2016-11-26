@@ -2,11 +2,11 @@
 from os.path import join
 from math import log
 
-DATA_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Original Dataset'
+DATA_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Data Analysis'
 OUTPUT_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Python'
 
 in_train = open(join(DATA_DIR, 'train.csv'))
-out_train = open(join(OUTPUT_DIR, 'log_train.csv'), 'w+')
+out_train = open(join(OUTPUT_DIR, 'train_log.csv'), 'w+')
 header = in_train.next().rstrip()
 
 
