@@ -14,34 +14,41 @@ OUTPUT_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Python'
 SAVE_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Python/Plots'
 
 # (filename, range_x, range_y, plot_color, plot_label)
-data_sets = [
-    ('train_new.csv', (2, 13), (1, 2), 'g-', 'Delta  '),
-    ('train_new_discrete.csv', (1, 12), (0, 1), 'c-', 'Binary'),
-    ('pca_train.csv', (1, 7), (7, 8), 'r-', 'PCA    '),
-    ('train_log.csv', (1, 12), (0, 1), 'b-', 'Log    '),
+data_set = ('train_log.csv', (1, 12), (0, 1))
+
+exclude_features = [
+    # Index of feature in feature list (not data index), plot_color, plot_label
+    ([], 'b-', 'All                 '),
+    # ([3, 7, 10], 'r-', 'NW3, Posts, MRec'),     # Mentions Received, Posts, Network 3
+    ([1], 'g-', '- Following    '),  # + Following Count
+    ([3], 'r-', '- Ment. Rec.  '),  # + Following Count
+    ([1, 3], 'c-', '- (Both)         '),  # + Following Count
 ]
+# Load data
+filename, x_range, y_range = data_set
+trainfile = open(join(DATA_DIR, filename))
+header = trainfile.next().rstrip().split(',')
 
-# Run & Plot each data set
-for data_set in data_sets:
-    filename, x_range, y_range, plot_color, plot_label = data_set
-    trainfile = open(join(DATA_DIR, filename))
-    header = trainfile.next().rstrip().split(',')
+x = []
+y = []
 
-    x = []
-    y = []
+# Read data from the training file
+for line in trainfile:
+    columns = line.rstrip().split(',')
+    label = int(columns[y_range[0]:y_range[1]][0])
+    features = [float(item) for item in columns[x_range[0]:x_range[1]]]
+    x.append(features)
+    y.append(label)
+trainfile.close()
 
-    # Read data from the training file
-    for line in trainfile:
-        columns = line.rstrip().split(',')
-        label = int(columns[y_range[0]:y_range[1]][0])
-        features = [float(item) for item in columns[x_range[0]:x_range[1]]]
-        x.append(features)
-        y.append(label)
-    trainfile.close()
-
+# Process each subset of features
+for fconfig in exclude_features:
+    fset, plot_color, plot_label = fconfig
+    use_features = [item for i, item in enumerate(x) if i not in fset]
+    use_labels = [item for i, item in enumerate(y) if i not in fset]
     # Convery to numpy array
-    Y = np.array(y)
-    X = np.array(x)
+    X = np.array(use_features)
+    Y = np.array(use_labels)
 
     # Shuffle and split training and test sets
     x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=.5, random_state=0)
@@ -69,6 +76,6 @@ plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
 
 # Output
-output = join(SAVE_DIR, 'Logistic Regression ROC - Transforms')
+output = join(SAVE_DIR, 'Logistic Regression ROC - Feature Selection')
 plt.savefig(output)
 # plt.show()

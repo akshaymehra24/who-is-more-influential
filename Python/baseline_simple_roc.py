@@ -15,10 +15,10 @@ SAVE_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Python/Plot
 
 # (filename, range_x, range_y, plot_color, plot_label)
 data_sets = [
-    ('train_new.csv', (2, 13), (1, 2), 'g-', 'Delta  '),
-    ('train_new_discrete.csv', (1, 12), (0, 1), 'c-', 'Binary'),
-    ('pca_train.csv', (1, 7), (7, 8), 'r-', 'PCA    '),
-    ('train_log.csv', (1, 12), (0, 1), 'b-', 'Log    '),
+    ('train_new.csv', (2, 13), (1, 2), 'g-', 'Baseline'),
+    # ('train_new_discrete.csv', (2, 13), (1, 2), 'c-', 'BIN '),
+    # ('pca_train.csv', (1, 7), (7, 8), 'r-', 'PCA'),
+    # ('train_log.csv', (1, 12), (0, 1), 'b-', 'LOG'),
 ]
 
 # Run & Plot each data set
@@ -43,18 +43,13 @@ for data_set in data_sets:
     Y = np.array(y)
     X = np.array(x)
 
-    # Shuffle and split training and test sets
-    x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=.5, random_state=0)
-
     # Run the model
-    model = linear_model.LogisticRegression(fit_intercept=False)
-    model.fit(x_train, y_train)
-    y_pred = model.predict_proba(x_test)[:, 1]
+    y_pred = [(1 if x[0] > 0 else 0) for x in X]      # higher follower count
 
     # Analyze the results
-    false_positive_rate, true_positive_rate, _ = roc_curve(y_test, y_pred)
+    false_positive_rate, true_positive_rate, _ = roc_curve(y, y_pred)
     roc_auc = auc(false_positive_rate, true_positive_rate)
-    roc_label = '{0} {1:0.5f}'.format(plot_label, roc_auc)
+    roc_label = '{0} {1:0.3f}'.format(plot_label, roc_auc)
 
     # Graph results
     plt.plot(false_positive_rate, true_positive_rate, plot_color, label=roc_label, linewidth=2)
@@ -69,6 +64,6 @@ plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
 
 # Output
-output = join(SAVE_DIR, 'Logistic Regression ROC - Transforms')
+output = join(SAVE_DIR, 'ROC - Baseline')
 plt.savefig(output)
 # plt.show()
