@@ -41,12 +41,14 @@ X_train_B = np.array(X_train_B)
 
 def transform_features(x):
     return np.log(1+x)
+    #x = (x - np.mean(x,axis = 0))/np.std(x,axis = 0) 
+    #return x
 
 X_train = transform_features(X_train_A) - transform_features(X_train_B)
 model=svm.SVC(probability=True);
 C = 1.0  # SVM regularization parameter
-model = svm.SVC(kernel='linear', C=C, probability=True).fit(X_train, y_train) #SVM with Linear Kernel
-#model = svm.SVC(kernel='rbf', gamma=0.7, C=C, probability=True).fit(X_train, y_train) #rbf_svm
+#model = svm.SVC(kernel='linear', C=C, probability=True).fit(X_train, y_train) #SVM with Linear Kernel
+model = svm.SVC(kernel='rbf', C=C, probability=True).fit(X_train, y_train) #rbf_svm
 #model = svm.SVC(kernel='poly', degree=3, C=C, probability=True).fit(X_train, y_train) #Polynomial SVM
 #model = svm.LinearSVC(C=C).fit(X_train, y_train) #Linear SVM
 

@@ -53,7 +53,7 @@ X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=
 model=svm.SVC(probability=True);
 C = 1.0  # SVM regularization parameter
 svc  = svm.SVC(kernel='linear', C=C, probability=True).fit(X_train, y_train) #SVM with Linear Kernel
-rbf_svc = svm.SVC(kernel='rbf', gamma=0.7, C=C, probability=True).fit(X_train, y_train) #rbf_svm
+rbf_svc = svm.SVC(kernel='rbf', C=C, probability=True).fit(X_train, y_train) #rbf_svm
 poly_svc = svm.SVC(kernel='poly', degree=3, C=C, probability=True).fit(X_train, y_train) #Polynomial SVM
 lin_svc = svm.LinearSVC(C=C).fit(X_train, y_train) #Linear SVM
 
