@@ -16,8 +16,8 @@ SAVE_DIR = 'C:/Users/Patrick/PycharmProjects/who-is-more-influential/Python/Plot
 # (filename, range_x, range_y, title/output)
 data_sets = [
     ('train_normalized_delta.csv', (1, 12), (0, 1), 'Logistic Regression - Normalized Difference'),
-    ('train_new_discrete.csv', (2, 13), (1, 2), 'Logistic Regression - Binary Transform'),
-    ('train_log.csv', (1, 12), (0, 1), 'Logistic Regression - Log Transform'),
+    # ('train_new_discrete.csv', (2, 13), (1, 2), 'Logistic Regression - Binary Transform'),
+    # ('train_log.csv', (1, 12), (0, 1), 'Logistic Regression - Log Transform'),
 ]
 
 # Run & Plot each data set
@@ -76,6 +76,6 @@ for data_set in data_sets:
         plt.title(title)
 
     # Output
-    # output = join(SAVE_DIR, title)
-    # plt.savefig(output)
-    plt.show()
+    output = join(SAVE_DIR, title)
+    plt.savefig(output)
+    # plt.show()
