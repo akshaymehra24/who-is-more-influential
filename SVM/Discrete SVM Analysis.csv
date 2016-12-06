@@ -1,19 +1,20 @@
-Accuracy,Precision,Recall,F-Score,AUC,Average Log Loss,Training Log Loss,Features Not Used,Test AUC
-0.748363636,0.754098361,0.736535662,0.745213549,0.799670373,0.544028909,21.51318917,None,
-0.753454545,0.756637168,0.746724891,0.751648352,0.805299203,0.538169166,22.3585717,"10, 11, 12",
-0.756363636,0.757309942,0.754002911,0.755652808,0.809490412,0.535258777,22.77845229,"3, 7, 8, 10, 11, 12",0.77033
-0.756363636,0.752873563,0.762736536,0.757772957,0.806530542,0.536410179,22.61234002,"3, 6, 7, 8, 10, 11, 12",
-,,,,,,,,
-,,,,,,,,
-,,,,1,data.Choice,,,
-,,,,2,data.A_follower_count...data.B_follower_count,,,
-,,,,3,data.A_following_count...data.B_following_count,,,
-,,,,4,data.A_listed_count...data.B_listed_count,,,
-,,,,5,data.A_mentions_received...data.B_mentions_received,,,
-,,,,6,data.A_retweets_received...data.B_retweets_received,,,
-,,,,7,data.A_mentions_sent...data.B_mentions_sent,,,
-,,,,8,data.A_retweets_sent...data.B_retweets_sent,,,
-,,,,9,data.A_posts...data.B_posts,,,
-,,,,10,data.A_network_feature_1...data.B_network_feature_1,,,
-,,,,11,data.A_network_feature_2...data.B_network_feature_2,,,
-,,,,12,data.A_network_feature_3...data.B_network_feature_3,,,
+Transform,Accuracy,Precision,Recall,F-Score,AUC,Average Log Loss,Training Log Loss,Features Not Used,Test AUC,,,
+Delta,0.693090909,0.667934094,0.767103348,0.714092141,0.729936783,0.642160112,7.35584369,None,0.71758,,,
+Delta,0.689454545,0.664141414,0.765647744,0.711291413,0.730318667,0.642861669,7.254630469,"10, 11, 7, 8",0.71693,,,
+Delta,0.688,0.66084788,0.77147016,0.711887173,0.729478733,0.643485402,7.164644815,"10, 11, 7, 8, 9, 3",0.71264,,,
+,,,,,,,,,,,,
+Log,0.765090909,0.754189944,0.786026201,0.769779045,0.860569844,0.463266396,33.16476125,None,0.85931,,,
+Log,0.767272727,0.758815233,0.783114993,0.770773639,0.858623396,0.466768606,32.65949905,"10, 11, 7, 8",0.85576,,,
+Log,0.763636364,0.752793296,0.784570597,0.768353528,0.858986239,0.46602378,32.76695475,"10, 11, 7, 8, 9, 3",0.85527,,,
+,,,,,,,,,,,1,data.Choice
+PCA,0.767272727,0.755215577,0.790393013,0.772403983,0.860393182,0.463698864,33.10236929,None,0.85885,,2,data.A_follower_count...data.B_follower_count
+,,,,,,,,,,,3,data.A_following_count...data.B_following_count
+Discrete,0.754181818,0.753265602,0.755458515,0.754360465,0.800586473,0.537901686,22.39716087,None,0.8129,,4,data.A_listed_count...data.B_listed_count
+Discrete,0.753454545,0.752906977,0.754002911,0.753454545,0.796395264,0.539254276,22.20202337,"9, 3",0.81759,,5,data.A_mentions_received...data.B_mentions_received
+Discrete,0.755636364,0.757709251,0.751091703,0.754385965,0.787103094,0.5367396,22.56481458,"9, 3, 4, 7,  8, 11",0.78963,,6,data.A_retweets_received...data.B_retweets_received
+,,,,,,,,,,,7,data.A_mentions_sent...data.B_mentions_sent
+,,,,,,,,,,,8,data.A_retweets_sent...data.B_retweets_sent
+,,,,,,,,,,,9,data.A_posts...data.B_posts
+,,,,,,,,,,,10,data.A_network_feature_1...data.B_network_feature_1
+,,,,,,,,,,,11,data.A_network_feature_2...data.B_network_feature_2
+,,,,,,,,,,,12,data.A_network_feature_3...data.B_network_feature_3

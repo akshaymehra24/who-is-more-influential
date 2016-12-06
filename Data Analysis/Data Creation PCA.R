@@ -6,7 +6,16 @@ data.pca <- prcomp(data[,3:13], center = TRUE, scale. = TRUE)
 print(data.pca)
 #plot method
 plot(data.pca, type = "l")
+biplot(data.pca, scale=0)
+std_dev=data.pca$sdev
+names(data.pca)
+std_dev=std_dev*std_dev
+std_dev
+percentagevariance=std_dev/sum(std_dev)
+percentagevariance
+plot(cumsum(percentagevariance), xlab = "Principal Component",ylab = "Cumulative Proportion of Variance Explained",type = "b")
 summary(data.pca)
+pc=as.data.frame(data.pca)
 #PC = predict(trans, iris[,1:4])
 names(data.pca)
 class(data.pca$x)
